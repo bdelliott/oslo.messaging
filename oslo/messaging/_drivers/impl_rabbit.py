@@ -491,7 +491,7 @@ class Connection(object):
                   'port': self.connection.port})
         # NOTE(sileht): just ensure the connection is setuped at startup
         self.ensure(error_callback=None,
-                    method=lambda channel: True)
+                    method=lambda: True)
         LOG.info(_('Connected to AMQP server on %(hostname)s:%(port)d'),
                  {'hostname': self.connection.hostname,
                   'port': self.connection.port})
@@ -602,8 +602,8 @@ class Connection(object):
             for consumer in self.consumers:
                 consumer.reconnect(new_channel)
 
-            LOG.info(_LI('Reconnected to AMQP server on '
-                         '%(hostname)s:%(port)d'),
+            LOG.info(_('Reconnected to AMQP server on '
+                       '%(hostname)s:%(port)d'),
                      {'hostname': self.connection.hostname,
                       'port': self.connection.port})
 
